@@ -1,0 +1,384 @@
+.tab-bar {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-direction: normal;
+	-webkit-box-orient: horizontal;
+	-webkit-flex-direction: horizontal;
+	flex-direction: horizontal;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	position: absolute;
+	z-index: 3;
+	width: 100%;
+	height: 49px;
+	padding-top: 4px;
+	color: @tabTxtColor;
+}
+.ios .tab-bar, .ios .nav-tabbar  {
+	.filterBlur;
+	background: @iosBackground;
+}
+.android .tab-bar, .android .nav-tabbar  {
+	background: @androidBackground;
+}
+.tab-bottom {
+	bottom: 0;
+}
+.tab-bottom:before {
+	.topLine(@c: rgba(177,177,177,.95),@t:-.03rem);
+}
+.tab-button {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	flex: 1;
+	display: block;
+	max-width: 150px;
+	height: 100%;
+	white-space: nowrap;
+	font-weight: 400;
+	font-size: 11px;
+	text-overflow:ellipsis;
+	text-align: center;
+	color: inherit;
+	.tab-button-icon {
+		height: 22px;
+		-webkit-background-size: 32px;
+		background-size: 32px;
+		&.icon-drive {/* 预约试驾 */
+			position: relative;
+			z-index: 1;
+			width: 46px;
+			height: 46px;
+			background-color: #fff;
+		}
+	}
+	.tab-button-txt {
+
+	}
+}
+.active.tab-button {
+	color: @tabTxtColorActive;
+}
+.tab-content {
+	bottom: 49px;
+	&.cached {
+		display: none;
+	}
+	&.active {
+		display: block;
+	}
+}
+.nav-tab {
+	position: relative;
+	width: 100%;
+}
+.nav-tab-content {
+	position: absolute;
+	width: 100%;
+	.cached {
+		display: none;
+	}
+	.active {
+		display: block;
+	}
+	//.scroll-height {
+	//	&.active {
+	//		transform: translate(0, 0);
+	//	}
+	//	&.cached {
+	//		display: block;
+	//		transform: translate(100%, 0);
+	//	}
+	//}
+}
+.nav-tabbar {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-direction: normal;
+	-webkit-box-orient: horizontal;
+	-webkit-flex-direction: horizontal;
+	flex-direction: horizontal;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	position: absolute;
+	width: 100%;
+	height: 44px;
+	z-index: 1;
+	&:before {
+		.bottomLine();
+	}
+	.tab-button {
+		position: relative;
+		display: block;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-flex: 1;
+		-webkit-flex: 1;
+		flex: 1;
+		-webkit-align-items: center;
+		align-items: center;
+		-webkit-aligin-self: center;
+		align-self: center;
+		-webkit-justify-content: center;
+		justify-content: center;
+		max-width: 150px;
+		height: 100%;
+		white-space: nowrap;
+		text-align: center;
+		line-height: 44px;
+		font-size: 13px;
+		&:before {
+			position: absolute;
+			margin-top: -7px;
+			height: 14px;
+			.rightLine(@t:50%);
+		}
+		&:last-child:before {
+			display: none;
+		}
+		.icon {
+			display: inline-block;
+			margin: 0;
+		}
+	}
+	.active {
+		display: -webkit-flex;
+		display: flex;
+		color: #3598dc;
+	}
+}
+
+.sub-bar {
+	.tab-button {
+		color: #3598dc;
+	}
+}
+
+// 纯正用品
+.tab-newcolor {
+
+	.tab-button {
+		&:before {
+			top: 0;
+			right: -11px;
+			width: 0;
+			height: 0;
+			margin: 0;
+			border: none;
+			border-left: 22px solid transparent;
+			border-right: 22px solid transparent;
+			border-top: 44px solid #f3f3f3;
+		}
+		&:after {
+			position: absolute;
+			top: 0;
+			left: -11px;
+			content: '';
+			width: 0;
+			height: 0;
+			margin: 0;
+			border: none;
+			border-left: 22px solid transparent;
+			border-right: 22px solid transparent;
+			border-top: 44px solid #f3f3f3;
+			-webkit-transform-origin: 0 0;
+			transform-origin: 0 0;
+			-webkit-transform: scaleX(0.5);
+			transform: scaleX(0.5);
+		}
+		&:first-child:after {
+			display: none;
+
+		}
+		background: #f3f3f3;
+		&.active {
+			background: #fff;
+		}
+	}
+}
+
+//.scroll-tab {
+//	.nav-tabbar {
+//		z-index: 2;
+//	}
+//	.nav-tab-content {
+//		position: relative;
+//		width: 100%;
+//		height: 100%;
+//		z-index: 1;
+//	}
+//	.show-home-slide {
+//		height: 100%;
+//		background: #fff;
+//	}
+//	.show-home-slide.cached {
+//		display: block;
+//		position: absolute;
+//
+//		width: 100%;
+//		z-index: 0;
+//	}
+//	.show-home-slide.active {
+//		display: block;
+//		position: absolute;
+//		width: 100%;
+//		z-index: 1;
+//	}
+//}
+
+
+
+
+.aui-panes {
+	.aui-pane{
+		display:none;
+	}
+	width:100%;
+	text-align:center;
+	-webkit-transition: .3s;
+	transition: .3s;
+}
+.aui-b-border:before{
+	content: " ";
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	height: 1px;
+	border-top: 1px solid #CCCCCC;
+	color: #CCCCCC;
+	-webkit-transform-origin: 0 100%;
+	transform-origin: 0 100%;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+
+}
+.aui-b-border:after{
+	content: " ";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	height: 1px;
+	border-bottom: 1px solid #CCCCCC;
+	color: #CCCCCC;
+	-webkit-transform-origin: 0 100%;
+	transform-origin: 0 100%;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+
+}
+
+.aui-b-border {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	text-align:center;
+	position:relative;
+	z-index: 500;
+	width: 100%;
+	background-color:#EFEFF4;
+	-webkit-transition: .3s;
+	transition: .3s;
+}
+
+.aui-tab {
+	ul{
+		li{
+			width:33.3333333%;
+			padding:10px 0;
+			font-size:14px;
+		}
+	}
+	position:relative;
+}
+
+.aui-hit {
+	background:#f36142;
+	color:#fff;
+}
+
+.aui-n-header {
+	padding:10px 15px;
+	position:absolute;
+	width:100%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: flex-start;
+	overflow: visible;
+	background: #eee;
+	color: #333;
+}
+
+.aui-n-header:before{
+	content: " ";
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	height: 1px;
+	border-top: 1px solid #CCCCCC;
+	color: #CCCCCC;
+	-webkit-transform-origin: 0 100%;
+	transform-origin: 0 100%;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+}
+
+.aui-n-header:after{
+	content: " ";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	height: 1px;
+	border-bottom: 1px solid #CCCCCC;
+	color: #CCCCCC;
+	-webkit-transform-origin: 0 100%;
+	transform-origin: 0 100%;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+}
+
+.aui-n-center {
+	-webkit-box-ordinal-group: 3;
+	-ms-flex-order: 2;
+	order: 2;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 50%;
+	flex: 0 0 50%;
+	text-align: center;
+	margin-left: 25%;
+	font-size:16px;
+	font-weight:normal;
+	.aui-n-back {
+		position:absolute;
+		left:5px;
+		top:10px;
+	}
+	.aui-n-menu {
+		position:absolute;
+		right:5px;
+		top:10px;
+	}
+}
+
+
+//首页icon 当前选中状态
+.aui-active .tab-button-txt {
+	color:#f36142;
+}
