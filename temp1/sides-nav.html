@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>AZENUI</title>
+	<link rel="stylesheet" type="text/css" href="css/ui.css">
+	<link href="favicon.ico" type="image/x-icon" rel="icon">
+	<link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+
+</head>
+<body>
+	<div class="container">
+		<div class="mp-pusher" id="mp-pusher">
+			<!-- 隐藏部分 begin -->
+			<nav id="mp-menu" class="mp-menu">
+				<div class="mp-level">
+					<p>首页</p>
+					<p>关于我们</p>
+					<p>联系我们</p>
+					<p>合作伙伴</p>
+					<p>合作伙伴</p>
+				</div>
+			</nav>
+			<!-- 隐藏部分 end -->
+			<div class="scroller">
+				<div class="scroller-inner">
+					<div class="content clearfix">
+						<div class="block block-40 clearfix">
+							<p><a href="#" id="trigger" class="menu-trigger"></a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/menu/aui-custom.js"></script>
+	<script src="js/menu/aui-class.js"></script>
+	<script src="js/menu/aui-menu.js"></script>
+	<script>
+		new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
+	</script>
+</body>
+</html>

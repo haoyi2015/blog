@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>AZENUI</title>
+	<link rel="stylesheet" type="text/css" href="css/ui.css">
+	<link href="favicon.ico" type="image/x-icon" rel="icon">
+	<link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+</head>
+
+<body>
+<div class="aui-container">
+	<div class="aui-page">
+		<div class="aui-t-header">
+			<div class="header">
+				<div class="header-background"></div>
+				<div class="toolbar statusbar-padding">
+					<button class="bar-button back-button"  onclick="history.go(-1);"><i class="icon icon-back"></i></button>
+					<div class="header-title">
+						<div class="title">表单</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="aui-s-title b-line">
+			<div class="aui-s-content">
+				<h2>单选复选表单</h2>
+				<p>应用于首页轮播广告以及橱窗</p>
+			</div>
+		</div>
+		<div class="devider b-line"></div>
+
+		<!-- 单选复选表单 begin -->
+		<div class="aui-form-content">
+			<div class="aui-from-list">
+				<h4>单选按钮</h4>
+				<div class="opt">
+					<input class="magic-radio" type="radio" name="radio" id="r1" value="option1">
+					<label for="r1">默认</label>
+				</div>
+				<div class="opt">
+					<input class="magic-radio" type="radio" name="radio" id="r2" value="option2" checked>
+					<label for="r2">选中</label>
+				</div>
+				<div class="opt">
+					<input class="magic-radio" type="radio" name="radio" id="r3" value="option3" disabled>
+					<label for="r3" style="color:#ccc">禁用</label>
+				</div>
+				<div class="opt">
+					<input class="magic-radio" type="radio" id="r4" value="option4" checked disabled>
+					<label for="r4" style="color:#ccc">当前禁用   </label>
+				</div>
+			</div>
+		</div>
+		<!-- 单选复选表单 end -->
+
+		<!-- 多选表单输入框 begin -->
+		<div class="aui-form-content">
+			<div class="aui-from-list">
+				<h4>复选按钮</h4>
+
+				<div class="opt">
+					<input class="magic-checkbox" type="checkbox" name="layout" id="c1">
+					<label for="c1">默认</label>
+				</div>
+				<div class="opt">
+					<input class="magic-checkbox" type="checkbox" name="layout" id="c2" checked>
+					<label for="c2">选中</label>
+				</div>
+				<div class="opt">
+					<input class="magic-checkbox" type="checkbox" name="layout" id="c3" value="option2" disabled>
+					<label for="c3" style="color:#ccc">禁用</label>
+				</div>
+				<div class="opt">
+					<input class="magic-checkbox" type="checkbox" name="layout" id="c4" checked disabled>
+					<label for="c4" style="color:#ccc">当前禁用</label>
+				</div>
+
+
+
+			</div>
+		</div>
+		<!-- 多选表单输入框 end -->
+
+	</div>
+</div>
+
+</body>
+</html>
