@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "fis-postpackager-simple": "^0.0.26"
+  }
+}

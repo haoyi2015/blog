@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>订单列表</title>
+    <link rel="stylesheet" media="screen" href="http://assets.test.fanqiele.com/core/css/tomasky.core.all.css" />
+    <link type="text/css" rel="stylesheet" href="http://micro.fanqielaile.net/views/c/orderManage/orderManage.css">
+</head>
+<body>
+<div class="ms-controller" ms-controller="vm_order">
+    <div class="roomHeader">
+        <span ms-class-on="!allOrder" ms-click="changeTabTo(false)">待处理<i></i></span>
+        <span ms-class-on="allOrder" ms-click="changeTabTo(true)">全部订单<i></i></span>
+    </div>
+    <div class="orderPart" ms-repeat="ordersList" ms-visible="!allOrder">
+        <i class="iconState">待</i>
+        <div class="orderPartContent">
+            <h2>{{el.contactUser}}<span ms-if="!el.needConfirm" class="color-red">（待分房）</span><span ms-if="el.needConfirm" class="color-red">（待确认）</span></h2>
+            <h2>{{el.contactPhone}}<span ms-if="el.address">({{el.address}})</span></h2>
+            <h3>{{el.roomTypeName}}[{{el.roomTypeNum}}间]</h3>
+            <h4>{{getShortDate(el.checkInAt)}}入住~{{getShortDate(el.checkOutAt)}}退房<span class="orderPrice">¥{{el.totalAmount}}</span></h4>
+        </div>
+        <a class="btn-red-solid fr matb10 mar10" ms-if="!el.needConfirm" ms-click="bookOrder(el)">分房</a>
+        <a class="btn-red-solid fr matb10 mar10" ms-if="el.needConfirm" ms-click="receiveOrders(el)">接单并分房</a>
+        <a class="btn-grey-solid fr matb10 mar10" ms-click="openRefuse(el)" ms-if="el.needConfirm">拒单</a>
+    </div>
+
+    <div class="dataNo" ms-if="(allOrder&&allOrders.length==0)||(!allOrder&&ordersList.length==0)">暂无订单</div>
+    <div class="allOrder" ms-visible="allOrder" ms-if="allOrders.length!=0">
+        <div class="allOrderPart" ms-repeat="allOrders" ms-click="alertToApp(true)">
+            <div class="allOrderInfo1">
+                <i ms-if="el.orderStatus == 3||el.orderStatus == 2" ms-class="iconState3">住</i>
+                <i ms-if="el.orderStatus == 4||el.orderStatus == 5" ms-class="iconState5">退</i>
+                <i ms-if="el.orderStatus == -2" ms-class="iconState6">删</i>
+                <i ms-if="el.orderStatus == 0" ms-class="iconState6">取</i>
+                <i ms-if="el.orderStatus == 1" ms-class="iconState4">订</i>
+                {{el.contactUser}} | {{el.orderFromName}}
+                <span ms-if="!checkInToday(el)">{{getShortDate(el.checkInAt)}}</span>
+                <span ms-if="checkInToday(el)" class="color-red">今天</span>
+            </div>
+            <div class="allOrderInfo2"><label>{{el.subOrders[0].room.roomType.name}} {{el.subOrders[0].room.roomNo}}[{{el.subOrders.length}}间]</label>
+                <span>{{getShortDate(el.checkInAt)}}住~{{getShortDate(el.checkOutAt)}}退</span></div>
+        </div>
+    </div>
+    <div class="clickForMore" ms-visible="allOrder&&allOrders.length!=0" ms-click="clickForMore()">点击加载更多>></div>
+
+    <!--查看番茄app-->
+    <div class="order-refuse" ms-visible="bool.toApp">
+        <div class="toApp">
+            <h2>您需要下载番茄来了App</h2>
+            <h3>查看订单详情或处理订单</h3>
+            <span class="toAppBtn" ms-click="reset()">确定</span>
+        </div>
+    </div>
+    <!--拒单-->
+    <div class="order-refuse" ms-visible="bool.refuse">
+        <div class="order-refuse-part">
+            <h2 class="order-refuse-title">您正在拒单！</h2>
+            <select ms-duplex="refuseReasonList.selected">
+                <option ms-attr-value="refuseReasonList.id[$index]" ms-repeat="refuseReasonList.list">{{el}}</option>
+            </select>
+            <div class="border-b1"></div>
+            <span class="fr" ms-click="sureRefuse()">确定</span>
+            <span class="fr" ms-click="closeRefuse()">取消</span>
+        </div>
+    </div>
+    <!--手动分房-->
+    <div class="order-refuse" ms-visible="bool.handleBook">
+        <div class="order-book-part">
+            <h2><span>{{activeOrder.contactUser}}</span>   |  {{activeOrder.contactPhone}}<span ms-if="activeOrder.address">({{activeOrder.address}})</span></h2>
+            <h3>{{activeOrder.roomTypeName}}[{{activeOrder.roomTypeNum}}间]</h3>
+            <h4>{{getShortDate(activeOrder.checkInAt)}}入住~{{getShortDate(activeOrder.checkOutAt)}}退房<span>¥{{activeOrder.totalAmount}}</span></h4>
+            <div class="order-room-part">
+                <div ms-repeat="selectRoom" class="order-book-room">
+                    <select ms-change="changeRoomType(el,$index)" ms-duplex="el.typeIndex">
+                        <option ms-attr-value="$index" ms-repeat="roomList">{{el.name}}</option>
+                    </select>
+                    <select ms-duplex="el.roomIndex">
+                        <option ms-attr-value="$index" ms-repeat-room="el.rooms">{{room.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="order-room-btn">
+                <span class="btn-grey-no fr" ms-click="sureBookRoom()">确认分房</span>
+                <span class="btn-grey-no fr" ms-click="handleLater()">稍后分房</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="http://assets.test.fanqiele.com/core/js/tomasky.core.all.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/static/js/lib.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/orderManage/util/websocket.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/orderManage/util/order-sort-handler.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/orderManage/orderManage.js"></script>
+</body>
+</html>
+
+<!--分房 房型房间号-->
+<!--<div class="order-refuse" ms-visible="bool.rooms">-->
+<!--<div class="room-part">-->
+<!--<h2><i class="iconState2">未</i>您有1间房需要安排</h2>-->
+<!--<div class="room-part-list">-->
+<!--<ul>-->
+<!--<li class="on">舒适双床房</li>-->
+<!--<li>舒适双床房</li>-->
+<!--<li>舒适双床房</li>-->
+<!--<li>舒适双床房</li>-->
+<!--</ul>-->
+<!--<ul>-->
+<!--<li>1201</li>-->
+<!--<li>1201</li>-->
+<!--<li>1201</li>-->
+<!--<li>1201</li>-->
+<!--<li>1201</li>-->
+<!--<li>1201</li>-->
+<!--<li>1201</li>-->
+<!--<li>1201</li>-->
+<!--<li>1201</li>-->
+<!--<li>1201</li>-->
+<!--<li>1201</li>-->
+<!--<li>1201</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->

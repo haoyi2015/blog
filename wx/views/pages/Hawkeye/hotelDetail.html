@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,width=device-width">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+	<title></title>
+	<link rel="stylesheet" media="screen" href="http://assets.test.fanqiele.com/core/css/tomasky.core.all.css" />
+    <link type="text/css" rel="stylesheet" href="http://micro.fanqielaile.net/views/c/hawkeye/hawkeye.css">
+<link type="text/css" rel="stylesheet" href="http://micro.fanqielaile.net/static/css/font-icon.css">
+</head>
+<body style="background: #F8F8F8">
+	<div id="detail" v-cloak>
+		<section class="hotel-detail" v-if="hotelData">
+	        <div class="h-d-nav">
+	        	<b>{{hotelData.hotelName}}</b><i @click="relieve">解除</i>
+	        </div>
+	        <div class="adres-count clearfix">
+	        	<div class="a-c-m clearfix">
+	        		<div class="ads-l">
+		        		<span class="icon-address">
+		        			<em>{{hotelData.hotelAddr}}</em>
+		        		</span>
+		        	</div>
+		        	<div class="ads-r">
+		        		{{hotelData.score}}分
+		        	</div>
+	        	</div>
+	        </div>
+	    </section>
+		<section class="hotel-room-list" v-if="roomData.length>=1">
+			<ul>
+				<li v-for="room in roomData">
+					<div class="r-title">{{room.roomName}}<span v-for="gdn in room.goodName" v-if="room.goodName"> {{gdn.targetName}} </span></div>
+					<div class="room-fix clearfix">
+						<div class="app-col-xs-4" v-for="rooms in room.item">
+							<span class="sp0">{{rooms.date | uppercase}}</span>
+							<span class="sp1">
+								<i class="pf-l" v-if="rooms.oldPrice">¥{{rooms.oldPrice | price}}</i>
+								<i class="pf-m icon-arrow" v-if="rooms.oldPrice"></i>
+								<i class="pf-r">¥{{rooms.newPrice | price}}</i>
+							</span>
+							<span class="sp2">
+								<i class="mf-l" v-if="rooms.oldStock=='0'&&rooms.newStock=='-1'||rooms.newStock=='0'">充足</i>
+								<i class="mf-shy" v-if="rooms.newStock>=1">剩{{rooms.newStock}}间</i>
+								<i class="mf-m icon-arrow" v-if="rooms.oldStock=='0'&&rooms.newStock=='-1'"></i>
+								<i class="mf-r" v-if="rooms.newStock=='-1'">满房</i>
+							</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</section>
+		<section class="room-nodata" v-show="roomData.length<=0" style="display: none;">
+			<div class="no-group"></div>
+		</section>
+		<div class="cpt_mask_dailog" ref="show" v-show="flgShow" style="display: none;">
+			<div class="div_dailog c-confirm">
+				<div class="title_dailog">解除追踪</div>
+				<div class="discription_dailog">
+					<p class="p-count">确认不再关注当前酒店信息？</p>
+				</div>
+				<div class="dailog_divOperation">
+					<span class="btn_cancel" @click="cancel" data-name="取消">取消</span>
+					<span class="btn_save" @click="save(hotelData.id)" data-name="绑定">绑定</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/fontSize.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/vue.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/axios.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/tomasky.core.all.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/hotelDetail.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>AZENUI</title>
+	<link rel="stylesheet" type="text/css" href="css/ui.css">
+	<link href="favicon.ico" type="image/x-icon" rel="icon">
+	<link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+</head>
+<body>
+
+	<div class="aui-container">
+		<div class="aui-page">
+			<div class="aui-s-header">
+				<div class="header">
+					<div class="header-background"></div>
+					<div class="toolbar statusbar-padding">
+						<button class="bar-button back-button"  onclick="history.go(-1);"><i class="icon icon-back"></i></button>
+						<div class="header-title">
+							<div class="title">搜索文本框</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="aui-s-title">
+				<div class="aui-s-content">
+					<h2>搜索框</h2>
+					<p>获取当前样式的状态</p>
+				</div>
+			</div>
+			<!-- 搜索 begin -->
+			<!--<div class="aui-s-search">-->
+				<!--<div class="aui-s-background">-->
+					<!--<form>-->
+						<!--<input type="text" placeholder="搜索">-->
+					<!--</form>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!-- 搜索 end -->
+			<!--<div style="height:50px"></div>-->
+			<div class="aui-s-h">
+				<div class="aui-searchbar" id="search">
+					<div class="aui-searchbar-input aui-border-radius" tapmode="" onclick="doSearch()">
+						<i class="aui-iconfont aui-icon-search"></i>
+						<form action="javascript:search();">
+							<input type="search" placeholder="请输入搜索内容" id="search-input">
+						</form>
+					</div>
+					<div class="aui-searchbar-cancel" tapmod="">取消</div>
+				</div>
+				<script type="text/javascript" src="js/toast/api.js"></script>
+				<script type="text/javascript">
+					apiready = function(){
+						api.parseTapmode();
+					}
+					var searchBar = document.querySelector(".aui-searchbar-input");
+					if(searchBar){
+						searchBar.onclick = function(){
+							document.querySelector(".aui-searchbar-cancel").style.marginRight = 0;
+						}
+					}
+					document.querySelector(".aui-searchbar-cancel").onclick = function(){
+						this.style.marginRight = "-"+this.offsetWidth+"px";
+						document.getElementById("search-input").value = '';
+						document.getElementById("search-input").blur();
+					}
+					function doSearch(){
+						var searchValue = document.getElementById("search-input").value;
+						if(searchValue){
+							alert("您输入的内容是:"+searchValue);
+						}
+					}
+				</script>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

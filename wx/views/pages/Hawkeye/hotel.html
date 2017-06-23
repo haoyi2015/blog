@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+	<title>搜索酒店</title>
+    <link rel="stylesheet" media="screen" href="http://assets.test.fanqiele.com/core/css/tomasky.core.all.css" />
+    <link type="text/css" rel="stylesheet" href="http://micro.fanqielaile.net/views/c/hawkeye/hawkeye.css">
+<link type="text/css" rel="stylesheet" href="http://micro.fanqielaile.net/static/css/font-icon.css">
+</head>
+<body> 
+	<div id="hotel" v-cloak v-scroll="getMore">
+        <section class="header-search row">
+            <form action="javascript:;" class="search-form col">
+                <input type="search" v-model="sVal" style="font-family:'icomoon'"
+                    placeholder=" 请输入竟对酒店名称">
+            </form>
+            <a class="btn-cancel" @click="search">搜索</a>
+        </section>
+        <section class="search-hotel">
+            <ul>
+                <li v-for="item in items" @click="bindHotel(item)">
+                    <!-- <div class="a-l">
+                        <p>
+                            <span class="icon-hawkeye dip"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span>
+                            <i>已绑定</i>            
+                        </p>
+                    </div> -->
+                    <div class="a-r">
+                        <div class="h-title">
+                            <b>{{item.hotelName}}</b>
+                        </div>
+                        <div class="h-addres">
+                            <span class="icon-address" v-text="item.hotelAddr"></span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <transition name="fade" v-if="dailogFlag">
+            <div class="cpt_mask_dailog">
+                <div class="div_dailog">
+                    <div class="title_dailog text_slv" v-text="detail.hotelName"></div>
+                    <div class="discription_dailog">
+                        <p class="p-title">酒店地址：</p>
+                        <p class="p-count" v-text="detail.hotelAddr"></p>
+                    </div>
+                    <div class="discription_dailog">
+                        <p class="p-title">酒店评分：</p>
+                        <p class="p-count"><i v-text="detail.score"></i><em>分</em></p>
+                    </div>
+                    <div class="dailog_divOperation">
+                        <span class="btn_cancel" @click="cancel" data-name="取消">取消</span>
+                        <span class="btn_save" @click="save(detail.id)" data-name="绑定">绑定</span>
+                    </div>
+                </div>
+            </div>
+        </transition>
+        <div class="cpt_mask_dailog wi-hotel" v-if="showFlag">
+            <div class="haw-tost">
+                追踪成功!
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/fontSize.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/vue.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/axios.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/tomasky.core.all.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/hotel.js"></script>
+</body>
+</html>

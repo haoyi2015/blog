@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>AZENUI</title>
+	<link rel="stylesheet" type="text/css" href="css/ui.css">
+	<link href="favicon.ico" type="image/x-icon" rel="icon">
+	<link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+</head>
+<body>
+<div id="demo">1</div>
+<footer class="aui-bar aui-bar-tab" id="footer">
+	<div class="aui-bar-tab-item" tapmode="" data-item-order="0">
+		<i class="aui-iconfont aui-icon-home"></i>
+		<div class="aui-bar-tab-label">首页</div>
+	</div>
+	<div class="aui-bar-tab-item aui-active" tapmode="" data-item-order="1">
+		<i class="aui-iconfont aui-icon-star"></i>
+		<div class="aui-bar-tab-label">收藏</div>
+	</div>
+	<div class="aui-bar-tab-item" tapmode="" data-item-order="2">
+		<div class="aui-badge">99</div>
+		<i class="aui-iconfont aui-icon-cart"></i>
+		<div class="aui-bar-tab-label">购物车</div>
+	</div>
+	<div class="aui-bar-tab-item" tapmode="" data-item-order="3">
+		<div class="aui-dot"></div>
+		<i class="aui-iconfont aui-icon-my"></i>
+		<div class="aui-bar-tab-label">我的</div>
+	</div>
+</footer>
+
+<script type="text/javascript" src="js/toast/api.js"></script>
+<script type="text/javascript" src="js/nav-tab/aui-tab.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		api.parseTapmode();
+	}
+	var tab = new auiTab({
+		element:document.getElementById("footer")
+	},function(ret){
+		console.log(ret);
+		if(ret){
+			document.getElementById("demo").textContent = ret.index;
+		}
+	});
+</script>
+</body>
+</html>

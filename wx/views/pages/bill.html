@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>我的账单</title>
+    <link rel="stylesheet" media="screen" href="http://assets.test.fanqiele.com/core/css/tomasky.core.all.css" />
+    <link type="text/css" rel="stylesheet" href="http://micro.fanqielaile.net/views/c/bill/bill.css">
+</head>
+<body>
+<div ms-controller="vm_bill" class="ms-controller">
+    <div class="bill-hd" ms-if="inn.innName">
+        <div class="bill-infolist-title">
+            {{inn.innName}}
+        </div>
+        <p class="bill-title">收款账号信息：{{bankInfo.bankAccount}}（{{bankInfo.bankType}}）</p>
+        <p>{{bankInfo.bankCode}}</p>
+        <p>{{bankInfo.bankName}}</p>
+        <p>{{bankInfo.bankRegion}}</p>
+    </div>
+    <div ms-if="dataNothing" style="text-align: center; font-size: 14px; font-weight: bold; color: #525252; position: relative; top: 50px">
+        暂无账单信息
+    </div>
+    <div class="bill-infolist">
+        <ul>
+            <li ms-repeat-el="financeList">
+                <p>{{el.settlementTime}}
+                    <span class="ftc-grav" ms-class-ftc-red="isRed=(el.settlementStatus=='未结算')?true:false">{{el.confirmStatus}}-{{el.settlementStatus}}</span>
+                </p>
+                <p>共{{el.totalOrder}}笔订单</p>
+                <p>结算金额：￥{{el.afterPaymentAmount}}</p>
+                <button class="bill-confirm" ms-visible="isconfirm=(el.confirmStatus=='未确认')?true:false" ms-click="getConfirm(el.settlementTime)">确认账单</button>
+            </li>
+        </ul>
+    </div>
+    <!--<div class="bill-dialog" ms-visible="dialogStatus">-->
+        <!--<div class="bill-dialog-info">-->
+            <!--<div class="d-title">切换绑定客栈</div>-->
+            <!--<div class="d-content">-->
+                <!--<p ms-repeat-innlist="inns" ms-click="getThisInn($index)">-->
+                    <!--<span class="icon-radio" ms-class-selected="ischecked=(indexs.defindex==$index)?true:false"></span>-->
+                    <!--{{innlist.innName}}-->
+                <!--</p>-->
+            <!--</div>-->
+            <!--<div class="d-ft">-->
+                <!--<button ms-click="dialogCancel">取消</button>-->
+                <!--<button ms-click="dialogSure()">确定</button>-->
+            <!--</div>-->
+        <!--</div>-->
+
+    <!--</div>-->
+</div>
+<script type="text/javascript" src="http://assets.test.fanqiele.com/core/js/tomasky.core.all.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/static/js/lib.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/bill/bill.js"></script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?f982003799c920ee8d4e14f679f3e82b";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

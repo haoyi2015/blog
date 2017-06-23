@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,width=device-width">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta content="telephone=no" name="format-detection">
+	<title>选择城市</title>
+	<link rel="stylesheet" media="screen" href="http://assets.test.fanqiele.com/core/css/tomasky.core.all.css" />
+    <link type="text/css" rel="stylesheet" href="http://micro.fanqielaile.net/views/c/hawkeye/hawkeye.css">
+<link type="text/css" rel="stylesheet" href="http://micro.fanqielaile.net/static/css/font-icon.css">
+</head>
+<body>
+    <div id="city" v-cloak>
+    	<section class="header-search row">
+            <form action="javascript:;" class="search-form col">
+                <input type="search" v-model="val" style="font-family:'icomoon'"
+                    placeholder=" 输入城市名称...">
+            </form>
+            <a class="btn-cancel" @click="search">搜索</a>
+        </section>
+        <section class="city-list" v-if="datas.length>=1">
+        	<p class="dq"><b>|</b> 当前城市</p>
+        	<div class="currentCity" v-text="cityName">
+                   {{cityName}}
+            </div>
+            <section v-if="hotData.length>=1">
+                <p class="dq"><b>|</b> 热门城市</p>
+                <div class="app-row cityGrid clearfix">
+                    <div class="app-col-xs-4" v-for="(item,index) in hotData" v-if="hotData.length>=1"><a href="javascript:;" @click="bindCity(item)">{{item.ctiyName}}</a></div>
+                </div>    
+            </section>        
+            <div class="city-box clearfix" v-for="(data,index) in datas">
+            	<div class="title">
+            		{{data.type}}
+            	</div>
+            	<div class="c-list">
+    				<a href="javascript:;" v-for="items in data.data" @click="bindCity(items)">{{items.ctiyName}}</a>
+            	</div>
+            </div>
+        </section>
+        <div class="city-no-data" v-show="datas.length<=0" style="display: none;">
+            <img class="imgWh" src="http://micro.fanqielaile.net/views/c/hawkeye/images/city_no_data.png" alt="">
+        </div>
+    </div>
+	<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/fontSize.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/vue.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/axios.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/tomasky.core.all.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/city.js"></script>
+</body>
+</html>

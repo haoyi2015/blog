@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>菜单</title>
+    <link rel="stylesheet" media="screen" href="http://assets.test.fanqiele.com/core/css/tomasky.core.all.css" />
+    <link type="text/css" rel="stylesheet" href="http://micro.fanqielaile.net/views/c/bdManager/manager.css">
+</head>
+<body style="background: #ffffff">
+    <div class="manage-back" ms-controller="vm_manager">
+        <span class="fl">{{inn.innName}}</span>
+        <span class="fr"  ms-click="todialog()">切换客栈</span>
+    </div>
+    <div class="menuList ms-controller" ms-controller="vm_manager">
+        <!--<a ms-visible="bdhotel" ms-click="roomClick()" class="menu acount"><h5>房态管理</h5></a>-->
+        <a ms-click="orderClick()" ms-visible="bdhotel" class="menu order"><h5>订单列表</h5></a>
+        <a ms-click="acountClick()" ms-visible="bdhotel" class="menu acount"><h5>查看代销账单</h5></a>
+        <a ms-click="managerClick()" ms-visible="bdhotel" class="menu tel"><h5>联系业务经理</h5></a>
+        <a ms-click="hawClick()" ms-visible="hawInnId" class="menu haw"><h5>鹰眼酒店雷达</h5></a>
+    </div>
+    <div class="bill-dialog" ms-visible="dialogStatus"  ms-controller="vm_manager">
+        <div class="bill-dialog-info">
+            <div class="d-title">切换绑定客栈</div>
+            <div class="d-content">
+                <p ms-repeat="inns" ms-click="getThisInn($index)">
+                    <span class="icon-radio" ms-class-selected="ischecked=(indexs.defindex==$index)?true:false"></span>
+                    {{el.innName}}
+                </p>
+            </div>
+            <div class="d-ft">
+                <button ms-click="dialogCancel()">取消</button>
+                <button ms-click="dialogSure()">确定</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="http://assets.test.fanqiele.com/core/js/tomasky.core.all.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/static/js/lib.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/bdManager/bdManager.js"></script>
+</html>

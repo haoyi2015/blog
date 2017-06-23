@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>悦商城</title>
+	<link rel="stylesheet" type="text/css" href="css/ui.css">
+	<link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/banner-he.js"></script>
+	<script type="text/javascript" src="js/banner.js"></script>
+</head>
+<body>
+
+	<div class="content">
+		<!--<section id="ui-search" class="ui-mb">-->
+			<!--<div class="ui-search">-->
+				<!--<div class="ui-search-co">-->
+					<!--<i class="ui-icon-search"></i><input type="text" placeholder="搜索商品" class="ui-search-in">-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</section>-->
+		<!--<div style="height:50px"></div>-->
+		<header id="ui-header">
+			<div class="ui-centre">
+				<section id="slider">
+					<div class="demo-item">
+						<div class="demo-block">
+							<div class="ui-slider" style="padding-top:49.25%">
+								<ul class="ui-slider-content" style="width: 300%">
+									<li><span style="background-image:url(images/banner/banner6.jpg)"></span></li>
+									<li><span style="background-image:url(images/banner/banner7.jpg)"></span></li>
+									<li><span style="background-image:url(images/banner/banner8.jpg)"></span></li>
+									<li><span style="background-image:url(images/banner/banner9.jpg)"></span></li>
+								</ul>
+							</div>
+						</div>
+						<script class="demo-script">
+							$(window).scroll(function () {
+								if ($(window).scrollTop() > 0) {
+									$("#headsearch").addClass("ui-form-color-nav");
+								}else if($(window).scrollTop() == 0){
+									$("#headsearch").removeClass("ui-form-color-nav");
+								}
+							});
+							(function (){
+								var slider = new fz.Scroll('.ui-slider', {
+									role: 'slider',
+									indicator: true,
+									autoplay: true,
+									interval: 3000
+								});
+
+								slider.on('beforeScrollStart', function(fromIndex, toIndex) {
+									console.log(fromIndex,toIndex)
+								});
+
+								slider.on('scrollEnd', function(cruPage) {
+									console.log(cruPage)
+								});
+							})();
+						</script>
+
+					</div>
+				</section>
+			</div>
+		</header>
+
+		<!--<div class="list-item-ba b-line">-->
+			<!--<a href="#"><img src="images/img/banner.jpg"></a>-->
+		<!--</div>-->
+		<div class="devider b-line"></div>
+		<div class="list-item-shop b-line">
+			<div class="list-item-shop-fix">
+				<a href="#" class="r-line">
+					<div class="icon-box"></div>
+					<div class="list-item-shop-fl">
+						<h2>友宝专区</h2>
+						<p>24小时自助兑换</p>
+					</div>
+				</a>
+				<a href="#">
+					<div class="icon-ami"></div>
+					<div class="list-item-shop-fl">
+						<h2>看购电影</h2>
+						<p>各种优惠等你来</p>
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="devider b-line"></div>
+		<div class="list-item-caption b-line">
+			<h2>金种子专区</h2>
+			<a href="#" class="list-item-more">更多<i class="icon icon-more"></i></a>
+		</div>
+		<div class="list-item-store">
+			<ul>
+				<li>
+					<div class="list-item-shop r-line">
+						<a href="#"><img src="images/img/banner1.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="">
+						<div class="list-item-shop b-line">
+							<a href="#"><img src="images/img/banner2.jpg"></a>
+						</div>
+						<div class="list-item-shop">
+							<a href="#"><img src="images/img/banner3.jpg"></a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="list-item-store item-clear">
+			<ul>
+				<li>
+					<div class="list-item-shop t-line">
+						<a href="#"><img src="images/img/banner4.jpg"></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- banner begin -->
+		<div class="devider t-line"></div>
+		<div class="list-item-banner t-line">
+			<a href="#"><img src="images/img/ba2.jpg"></a>
+		</div>
+		<!-- End -->
+		<div class="list-item-caption t-line">
+			<h2>金种子精店推荐专区</h2>
+			<a href="#" class="list-item-more">更多<i class="icon icon-more"></i></a>
+		</div>
+		<div class="list-item-store item-groom">
+			<ul>
+				<li>
+					<div class="list-item-shop">
+						<a href="#"><img src="images/img/pd1.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop t-line">
+						<a href="#"><img src="images/img/pd2.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop">
+						<a href="#"><img src="images/img/pd3.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop">
+						<a href="#"><img src="images/img/pd4.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop">
+						<a href="#"><img src="images/img/pd5.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop">
+						<a href="#"><img src="images/img/pd6.jpg"></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- banner begin -->
+		<div class="devider t-line"></div>
+		<div class="list-item-banner t-line">
+			<a href="#"><img src="images/img/ba1.jpg"></a>
+		</div>
+		<!-- End -->
+		<div class="devider b-line"></div>
+		<div class="list-item-caption b-line">
+			<h2>中搜币专区</h2>
+			<a href="#" class="list-item-more">更多<i class="icon icon-more"></i></a>
+		</div>
+		<div class="list-item-store list-border-right">
+			<ul>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/banner6.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/banner7.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/banner8.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/banner9.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/banner10.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/banner11.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/banner12.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/banner13.jpg"></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- banner begin -->
+		<div class="devider"></div>
+		<div class="list-item-banner t-line">
+			<a href="#"><img src="images/img/ba3.jpg"></a>
+		</div>
+		<!-- End -->
+		<div class="devider b-line"></div>
+		<div class="list-item-caption b-line">
+			<h2>商城热卖</h2>
+			<a href="#" class="list-item-more">更多<i class="icon icon-more"></i></a>
+		</div>
+		<div class="list-item-store">
+			<ul>
+				<li>
+					<div class="list-item-shop r-line">
+						<a href="#"><img src="images/img/banner14.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="">
+						<div class="list-item-shop b-line">
+							<a href="#"><img src="images/img/banner15.jpg"></a>
+						</div>
+						<div class="list-item-shop">
+							<a href="#"><img src="images/img/banner16.jpg"></a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- banner begin -->
+		<div class="devider t-line"></div>
+		<div class="list-item-banner t-line">
+			<a href="#"><img src="images/img/ba4.jpg"></a>
+		</div>
+		<!-- End -->
+		<div class="devider t-line"></div>
+		<div class="list-item-caption t-line">
+			<h2>精品货架</h2>
+			<!--<a href="#" class="list-item-more">更多<i class="icon icon-more"></i></a>-->
+		</div>
+		<div class="list-item-store item-groom item-lattice">
+			<ul>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#">
+							<span><img src="images/icon-png/icon-ye1.png"></span>
+							<p>零食食品</p>
+						</a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#">
+							<span><img src="images/icon-png/icon-ye2.png"></span>
+							<p>品质男包</p>
+						</a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#">
+							<span><img src="images/icon-png/icon-ye3.png"></span>
+							<p>家居母婴</p>
+						</a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#">
+							<span><img src="images/icon-png/icon-ye4.png"></span>
+							<p>美妆个护</p>
+						</a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#">
+							<span><img src="images/icon-png/icon-ye5.png"></span>
+							<p>时尚舞鞋</p>
+						</a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#">
+							<span><img src="images/icon-png/icon-ye6.png"></span>
+							<p>精品女包</p>
+						</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<!-- banner begin -->
+		<div class="devider t-line"></div>
+		<div class="list-item-banner t-line">
+			<a href="#"><img src="images/img/ba5.jpg"></a>
+		</div>
+		<!-- End -->
+		<div class="devider t-line"></div>
+		<div class="list-item-caption t-line">
+			<h2>京东好货</h2>
+			<!--<a href="#" class="list-item-more">更多<i class="icon icon-more"></i></a>-->
+		</div>
+		<div class="list-item-store item-groom ">
+			<ul>
+				<li>
+					<div class="list-item-shop box-line-white">
+						<a href="#"><img src="images/img/pd13.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line-white">
+						<a href="#"><img src="images/img/pd14.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line-white">
+						<a href="#"><img src="images/img/pd15.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line-white">
+						<a href="#"><img src="images/img/pd16.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line-white">
+						<a href="#"><img src="images/img/pd17.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line-white">
+						<a href="#"><img src="images/img/pd18.jpg"></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="devider t-line"></div>
+		<div class="list-item-caption t-line">
+			<h2>店铺推荐</h2>
+			<a href="#" class="list-item-more">更多<i class="icon icon-more"></i></a>
+		</div>
+		<div class="list-item-store item-groom">
+			<ul>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/pd7.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/pd8.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/pd9.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/pd10.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/pd11.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/pd12.jpg"></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+
+		<!-- banner begin -->
+		<div class="devider t-line"></div>
+		<div class="list-item-banner t-line">
+			<a href="#"><img src="images/img/ba1.jpg"></a>
+		</div>
+		<!-- End -->
+		<div class="devider b-line"></div>
+		<div class="list-item-caption b-line">
+			<h2>主题市场</h2>
+			<!--<a href="#" class="list-item-more">更多<i class="icon icon-more"></i></a>-->
+		</div>
+		<div class="list-item-store list-border-right">
+			<ul>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/banner17.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/banner18.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/banner19.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/banner20.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/banner21.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/banner22.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/banner23.jpg"></a>
+					</div>
+				</li>
+				<li>
+					<div class="list-item-shop box-line">
+						<a href="#"><img src="images/img/banner24.jpg"></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+
+
+
+
+		<div class="devider "></div>
+		<div style="height:49px"></div>
+		<div class="tab-bar tab-bottom">
+			<a class="tab-button active"><i class="icon icon-home"></i><span class="tab-button-txt">首页</span></a>
+			<a class="tab-button cached"><i class="icon icon-exhibition"></i><span class="tab-button-txt">货架</span></a>
+			<a class="tab-button cached"><i class="icon icon-search"></i><span class="tab-button-txt">搜索</span></a>
+			<a class="tab-button cached"><i class="icon icon-car"></i><span class="tab-button-txt">购物车</span></a>
+			<a class="tab-button cached"><i class="icon icon-my"></i><span class="tab-button-txt">我的</span></a>
+		</div>
+	</div>
+
+</body>
+</html>

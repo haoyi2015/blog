@@ -1,0 +1,860 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>vue测试ajax的使用</title>
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+    * {
+        padding: 0;
+        margin: 0
+    }
+    
+    .list ul li {
+        padding: 10px 5px 10px 10px;
+        overflow: hidden;
+        zoom: 1;
+        position: relative;
+        border-bottom: 1px solid #e8e8e8;
+    }
+    
+    .list ul li .img {
+        margin-right: 10px;
+        display: block;
+        width: 60px;
+        float: left;
+    }
+    
+    .list ul li img {
+        width: 60px;
+        height: 60px;
+        border-radius: 8px;
+    }
+    
+    .list ul li p {
+        -webkit-box-flex: 1;
+        color: #777;
+        overflow: hidden;
+        padding-right: 70px;
+    }
+    
+    .list ul li p em {
+        margin: 7px 0;
+    }
+    
+    .list ul li p a {
+        display: block;
+        height: 16px;
+        line-height: 16px;
+        overflow: hidden;
+        font-size: 15px;
+    }
+    
+    .list ul li p span {
+        display: block;
+        line-height: 16px;
+        height: 16px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font: 12px "\5FAE\8F6F\96C5\9ED1";
+    }
+    
+    .list ul li p u {
+        margin: 0 6px;
+        padding: 0 6px;
+        border-left: 1px solid #d9d9d9;
+        border-right: 1px solid #d9d9d9;
+    }
+    
+    .list ul li .btn {
+        width: 40px;
+        height: 25px;
+        padding-top: 35px;
+        color: #65bb0a;
+        line-height: 25px;
+        text-align: center;
+        background: none;
+        position: absolute;
+        right: 5px;
+        top: 12px
+    }
+    
+    .list ul li .btn .bg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: inline-block;
+        width: 100%;
+        height: 30px;
+        repeat;
+        background-size: 26px auto;
+    }
+    
+    .get-more,
+    .loading {
+        display: block;
+        padding: 15px 0;
+        line-height: 16px;
+        text-align: center;
+        font-size: 14px;
+    }
+    
+    .loading {
+        width: 75px;
+        margin: 0 auto;
+        /*background: url(imgs/loading.gif) 0 center no-repeat;*/
+        padding-left: 15px;
+        background-size: 13px auto
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    .btn {
+        display: inline-block;
+        padding: 6px 15px;
+        margin: 50px 0 0 50px;
+        border-radius: 4px;
+        background-color: #008CBA;
+        font: 16px/1.5 "Lucida Grande", "Microsoft JhengHei", "Microsoft YaHei";
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 300ms ease-out;
+    }
+    
+    .btn-default:hover {
+        background-color: #e6e6e6 !important;
+    }
+    
+    .btn-default.active,
+    .btn-default:focus,
+    .btn-default:active {
+        border-color: #999 !important;
+        background-color: #d4d4d4 !important;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, .1);
+    }
+    
+    .instance {
+        width: 80%;
+        height: 440px;
+        margin: 50px auto;
+        border: 1px solid #ececec;
+        position: relative;
+    }
+    
+    .instance .demo {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .instance .voice {
+        background-color: #ececec;
+        position: absolute;
+        left: 30%;
+        right: 30%;
+        bottom: 20px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="baidu_geo"></div>
+    <div id="latlon"></div>
+    <script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>
+    <script>
+    console.log(remote_ip_info.country + '\n' + remote_ip_info.province + '\n' + remote_ip_info.city)
+    </script>
+    <!-- <script type="text/template" id="template_pagination">
+        <nav>
+            <ul class="pagination">
+                <li :class="{'disabled': current == 1}"><a href="javascript:;" @click="setCurrent(1)"> 首页 </a></li>
+                <li :class="{'disabled': current == 1}"><a href="javascript:;" @click="setCurrent(current - 1)"> 上一页 </a></li>
+                <li v-for="p in grouplist" :class="{'active': current == p.val}"><a href="javascript:;" @click="setCurrent(p.val)"> {{ p.text }} </a></li>
+                <li :class="{'disabled': current == page}"><a href="javascript:;" @click="setCurrent(current + 1)"> 下一页</a></li>
+                <li :class="{'disabled': current == page}"><a href="javascript:;" @click="setCurrent(page)"> 尾页 </a></li>
+            </ul>
+            <ul class="pagination pull-right">
+                <li><span> 共 {{ total }}  条数据 </span></li>
+                <li><span> 每页显示 {{ display }}  条数据 </span></li>
+                <li><span> 共 {{ page }} 页 </span></li>
+                <li><span> 当前第 {{ current }} 页 </span></li>
+            </ul>
+        </nav>
+    </script>
+    <div id="app">
+        <div class="container">
+            <h1>  Vue 分页组件 </h1>
+            <pagination :total="total" :current.sync="current"></pagination>
+            <pre>{{ $data }}</pre>
+        </div>
+    </div> -->
+    <section id="app">
+        <div style="height: 120px;">11 </div>
+        <div class="list" v-scroll="getMore">
+            <ul>
+                <li v-for="item in games">
+                    <a v-bind:href="item.url" class="img">
+                        {{item.pics.facade}}
+
+                        <img v-bind:src="item.pics.facade">
+                    </a>
+                    <p>
+                        <a v-bind:href="item.url">{{item.title}}</a>
+                        <em class="lstar4"></em>
+                        <span>{{item.server}}<u>39.9M</u>v2.1.3</span>
+                    </p>
+                    <a v-bind:href="item.url" class="btn"><em class="bg"></em>下载</a>
+                </li>
+            </ul>
+            <div>
+                <p class="get-more" v-on:click="getMore()" v-show="switchShow">点击加载更多</p>
+                <p class="loading" v-show="!switchShow">加载中...</p>
+            </div>
+        </div>
+        <!--首页-->
+        <section class="main-home" v-if="footIndex == '0'" style="display: none">
+            <ul class="tab-tit" :class="{'fix-top': isToFixed}">
+                <li :class="{cur: activeIndex === index}" v-for="(item, index) in area" v-on:click="tab(index)"><a href="javascript:;">{{item.area_name}}</a></li>
+            </ul>
+            <div class="tab-con" v-for="(item, index) in area">
+                <ul>
+                    <li v-for="(item,index) in item.companies">
+                        <div class="co-logo">
+                            <em v-if="index < 9"></em>
+                            <span v-if="index < 9">{{index+1}}</span>
+                            <img :src="item.IconUri" alt="">
+                        </div>
+                        <div class="co-info">
+                            <div class="detail">
+                                <p>{{item.company_name}}</p>
+                                <span>{{item.votes}}票</span>
+                            </div>
+                            <button v-if="item.CutOffTimeDiff <= 0" class="disabled">投ta一票</button>
+                            <button v-else class="btn-vote" v-on:click="toVote(item.company_id)">投ta一票</button>
+                            <div class="status" v-if="item.upordown == 1">
+                                ↑
+                            </div>
+                            <div class="status" v-if="item.upordown == 0">
+                                -
+                            </div>
+                            <div class="status" v-if="item.upordown == -1">
+                                ↓
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </section>
+    <script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/vue.js"></script>
+<script src="../../c/hawkeye/js/pxx.js"></script>
+    <script src="http://cdn.bootcss.com/vue-resource/1.0.3/vue-resource.min.js"></script>
+    <script>
+    /**
+     * [pagination 分页组件]
+     * @param  {Number} total       [数据总条数]
+     * @param  {Number} display     [每页显示条数 default:10]
+     * @param  {Number} current     [当前页码 default:1]
+     * @param  {Number} pagegroup   [分页条数(奇数) default:5]
+     * @param  {Event} pagechange   [页码改动时 dispatch ]
+     * @return {[type]}   [description]
+     */
+    // Vue.component('pagination', {
+    //     template: '#template_pagination',
+    //     props: {
+    //         total: { // 数据总条数
+    //             type: Number,
+    //             default: 0
+    //         },
+    //         display: { // 每页显示条数
+    //             type: Number,
+    //             default: 10
+    //         },
+    //         current: { // 当前页码
+    //             type: Number,
+    //             default: 1
+    //         },
+    //         pagegroup: { // 分页条数 -- 奇数
+    //             type: Number,
+    //             default: 5,
+    //             coerce: function(v) {
+    //                 v = v > 0 ? v : 5;
+    //                 return v % 2 === 1 ? v : v + 1;
+    //             }
+    //         }
+    //     },
+    //     computed: {
+    //         page: function() { // 总页数
+    //             return Math.ceil(this.total / this.display);
+    //         },
+    //         grouplist: function() { // 获取分页页码
+    //             var len = this.page,
+    //                 temp = [],
+    //                 list = [],
+    //                 count = Math.floor(this.pagegroup / 2),
+    //                 center = this.current;
+    //             if (len <= this.pagegroup) {
+    //                 while (len--) {
+    //                     temp.push({
+    //                         text: this.page - len,
+    //                         val: this.page - len
+    //                     });
+    //                 };
+    //                 return temp;
+    //             }
+    //             while (len--) {
+    //                 temp.push(this.page - len);
+    //             };
+    //             var idx = temp.indexOf(center);
+    //             (idx < count) && (center = center + count - idx);
+    //             (this.current > this.page - count) && (center = this.page - count);
+    //             temp = temp.splice(center - count - 1, this.pagegroup);
+    //             do {
+    //                 var t = temp.shift();
+    //                 list.push({
+    //                     text: t,
+    //                     val: t
+    //                 });
+    //             } while (temp.length);
+    //             if (this.page > this.pagegroup) {
+    //                 (this.current > count + 1) && list.unshift({
+    //                     text: '...',
+    //                     val: list[0].val - 1
+    //                 });
+    //                 (this.current < this.page - count) && list.push({
+    //                     text: '...',
+    //                     val: list[list.length - 1].val + 1
+    //                 });
+    //             }
+    //             return list;
+    //         }
+    //     },
+    //     methods: {
+    //         setCurrent: function(idx) {
+    //             if (this.current != idx && idx > 0 && idx < this.page + 1) {
+    //                 this.current = idx;
+    //                 this.$emit('pagechange', this.current);
+    //             }
+    //         }
+    //     }
+    // });
+
+    var vm = new Vue({ 
+        el: '#app',
+         data: { 
+            url: 'http://fis.fangbaba.com/search/hotel/query',
+            nowPage: 0,
+            switchShow: false,
+            games: [],
+            total: 81,
+            display: 10,
+            current: 1,
+            footIndex:0,
+            isToFixed:'',
+            activeIndex:'',
+            companyList:'',
+            area: [{
+                    "area_name": "华东",
+                    "companies": [{
+                        "company_id": 13,
+                        "IconUri": "http://www.e-fa.cn/company/image/free_bg.gif",
+                        "company_name": "华强硅钢有限公司",
+                        "area_id": 1,
+                        "area_name": "华东",
+                        "votes": 32,
+                        "cur_ranking": 1,
+                        "pre_ranking": 1,
+                        "upordown": 0
+                    }, {
+                        "company_id": 16,
+                        "IconUri": "http://www.jemlc.com/image/logo.png",
+                        "company_name": "哈尔滨电气集团佳木斯电机股份有限公司",
+                        "area_id": 1,
+                        "area_name": "华东",
+                        "votes": 19,
+                        "cur_ranking": 2,
+                        "pre_ranking": 3,
+                        "upordown": 1
+                    }, {
+                        "company_id": 14,
+                        "IconUri": "http://www.jscc-china.com/images/logo.png",
+                        "company_name": "厦门精研自动化元件有限公司",
+                        "area_id": 1,
+                        "area_name": "华东",
+                        "votes": 18,
+                        "cur_ranking": 3,
+                        "pre_ranking": 3,
+                        "upordown": 0
+                    }, {
+                        "company_id": 6,
+                        "IconUri": "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1086817213,2532685033&fm=58",
+                        "company_name": "上海穿什么服装有限公司",
+                        "area_id": 1,
+                        "area_name": "华东",
+                        "votes": 9,
+                        "cur_ranking": 4,
+                        "pre_ranking": 1,
+                        "upordown": -1
+                    }, {
+                        "company_id": 15,
+                        "IconUri": "http://www.wnmotor.com/UploadFiles/Others/20150901152902_27214.png",
+                        "company_name": "安徽皖南电机股份有限公司",
+                        "area_id": 1,
+                        "area_name": "华东",
+                        "votes": 9,
+                        "cur_ranking": 5,
+                        "pre_ranking": 5,
+                        "upordown": 0
+                    }, {
+                        "company_id": 8,
+                        "IconUri": "http://www.genyi.net/biglogo/images/040.gif",
+                        "company_name": "上海链集电子商务",
+                        "area_id": 1,
+                        "area_name": "华东",
+                        "votes": 7,
+                        "cur_ranking": 6,
+                        "pre_ranking": 3,
+                        "upordown": -1
+                    }, {
+                        "company_id": 5,
+                        "IconUri": "https://static.smm.cn/www.smm.cn/1.3.125/image/logo.png",
+                        "company_name": "上海有色金属有限公司",
+                        "area_id": 1,
+                        "area_name": "华东",
+                        "votes": 6,
+                        "cur_ranking": 7,
+                        "pre_ranking": 3,
+                        "upordown": -1
+                    }, {
+                        "company_id": 7,
+                        "IconUri": "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3800263592,2456696637&fm=58",
+                        "company_name": "湖南有色金属控股集团有限公司",
+                        "area_id": 1,
+                        "area_name": "华东",
+                        "votes": 4,
+                        "cur_ranking": 8,
+                        "pre_ranking": 4,
+                        "upordown": -1
+                    }, {
+                        "company_id": 9,
+                        "IconUri": "http://a3.att.hudong.com/61/72/01300542527571139919720772972_s.jpg",
+                        "company_name": "北京太阳圣火文化传播有限公司",
+                        "area_id": 1,
+                        "area_name": "华东",
+                        "votes": 3,
+                        "cur_ranking": 9,
+                        "pre_ranking": 5,
+                        "upordown": -1
+                    }, {
+                        "company_id": 10,
+                        "IconUri": "http://www.oneding.com/images/index_30.jpg",
+                        "company_name": "万鼎硅钢集团有限公司",
+                        "area_id": 1,
+                        "area_name": "华东",
+                        "votes": 2,
+                        "cur_ranking": 10,
+                        "pre_ranking": 11,
+                        "upordown": 1
+                    }, {
+                        "company_id": 12,
+                        "IconUri": "http://www.sdguigang.cn/images/logo.jpg",
+                        "company_name": "山东硅钢新材料有限公司",
+                        "area_id": 1,
+                        "area_name": "华东",
+                        "votes": 2,
+                        "cur_ranking": 11,
+                        "pre_ranking": 12,
+                        "upordown": 1
+                    }, {
+                        "company_id": 11,
+                        "IconUri": "http://www.yu-xing.com.cn/images/banner/1.jpg",
+                        "company_name": "宁波宇星硅钢工业有限公司",
+                        "area_id": 1,
+                        "area_name": "华东",
+                        "votes": 1,
+                        "cur_ranking": 12,
+                        "pre_ranking": 8,
+                        "upordown": -1
+                    }]
+                }, {
+                    "area_name": "华北",
+                    "companies": [{
+                        "company_id": 6,
+                        "IconUri": "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1086817213,2532685033&fm=58",
+                        "company_name": "上海穿什么服装有限公司",
+                        "area_id": 2,
+                        "area_name": "华北",
+                        "votes": 9,
+                        "cur_ranking": 1,
+                        "pre_ranking": 1,
+                        "upordown": 0
+                    }, {
+                        "company_id": 8,
+                        "IconUri": "http://www.genyi.net/biglogo/images/040.gif",
+                        "company_name": "上海链集电子商务",
+                        "area_id": 2,
+                        "area_name": "华北",
+                        "votes": 7,
+                        "cur_ranking": 2,
+                        "pre_ranking": 3,
+                        "upordown": 1
+                    }, {
+                        "company_id": 7,
+                        "IconUri": "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3800263592,2456696637&fm=58",
+                        "company_name": "湖南有色金属控股集团有限公司",
+                        "area_id": 2,
+                        "area_name": "华北",
+                        "votes": 4,
+                        "cur_ranking": 3,
+                        "pre_ranking": 4,
+                        "upordown": 1
+                    }]
+                }, {
+                    "area_name": "华中",
+                    "companies": [{
+                        "company_id": 6,
+                        "IconUri": "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1086817213,2532685033&fm=58",
+                        "company_name": "上海穿什么服装有限公司",
+                        "area_id": 3,
+                        "area_name": "华中",
+                        "votes": 9,
+                        "cur_ranking": 1,
+                        "pre_ranking": 1,
+                        "upordown": 0
+                    }, {
+                        "company_id": 5,
+                        "IconUri": "https://static.smm.cn/www.smm.cn/1.3.125/image/logo.png",
+                        "company_name": "上海有色金属有限公司",
+                        "area_id": 3,
+                        "area_name": "华中",
+                        "votes": 6,
+                        "cur_ranking": 2,
+                        "pre_ranking": 3,
+                        "upordown": 1
+                    }]
+                }, {
+                    "area_name": "华南",
+                    "companies": [{
+                        "company_id": 6,
+                        "IconUri": "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1086817213,2532685033&fm=58",
+                        "company_name": "上海穿什么服装有限公司",
+                        "area_id": 5,
+                        "area_name": "华南",
+                        "votes": 9,
+                        "cur_ranking": 1,
+                        "pre_ranking": 1,
+                        "upordown": 0
+                    }, {
+                        "company_id": 9,
+                        "IconUri": "http://a3.att.hudong.com/61/72/01300542527571139919720772972_s.jpg",
+                        "company_name": "北京太阳圣火文化传播有限公司",
+                        "area_id": 5,
+                        "area_name": "华南",
+                        "votes": 3,
+                        "cur_ranking": 2,
+                        "pre_ranking": 5,
+                        "upordown": 1
+                    }]
+                }, {
+                    "area_name": "西部",
+                    "companies": [{
+                        "company_id": 5,
+                        "IconUri": "https://static.smm.cn/www.smm.cn/1.3.125/image/logo.png",
+                        "company_name": "上海有色金属有限公司",
+                        "area_id": 6,
+                        "area_name": "西部",
+                        "votes": 6,
+                        "cur_ranking": 1,
+                        "pre_ranking": 3,
+                        "upordown": 1
+                    }, {
+                        "company_id": 7,
+                        "IconUri": "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3800263592,2456696637&fm=58",
+                        "company_name": "湖南有色金属控股集团有限公司",
+                        "area_id": 6,
+                        "area_name": "西部",
+                        "votes": 4,
+                        "cur_ranking": 2,
+                        "pre_ranking": 4,
+                        "upordown": 1
+                    }, {
+                        "company_id": 9,
+                        "IconUri": "http://a3.att.hudong.com/61/72/01300542527571139919720772972_s.jpg",
+                        "company_name": "北京太阳圣火文化传播有限公司",
+                        "area_id": 6,
+                        "area_name": "西部",
+                        "votes": 3,
+                        "cur_ranking": 3,
+                        "pre_ranking": 5,
+                        "upordown": 1
+                    }]
+                }]
+        },
+        events: {
+            pagechange: function(p) {
+                console.log('pagechange', p);
+            }
+        },
+        created() {
+            /*//this.hotelImg = this.hotelImage(this.hotelVip.pics);
+            var params = new Object();  //创建params对象
+                params ={
+                pageNo : this.nowPage,
+                key : '',
+                cityCode : 310100,
+                pageSize : 10
+            }
+
+            var url = this.url;  //url地址
+            this.postRequest(url, params)
+            .then((message) => {
+                console.log(message)
+                //这里处理成功回调
+            })
+            .catch((message) => {
+              //这里处理失败回调
+            });*/
+        },
+        methods: {
+            moreFn: function(itemIndex) {
+                let parms = {
+                    pageNo: this.nowPage,
+                    key: '',
+                    cityCode: 310100,
+                    pageSize: 10
+                }
+                console.log(this.switchShow);
+                this.$http.post(this.url, {
+                    params: parms
+                }).then(function(response) {  
+                    this.games = this.games.concat(response.body.result.items)
+                    this.switchShow = !this.switchShow;  
+                }, function(response) {   
+                    console.log(response)  
+                }); 
+            },
+            getMore: function() {  
+                this.switchShow = !this.switchShow;  
+                this.nowPage++;  
+                this.moreFn(this.nowPage); 
+            },
+            init: function() {  
+                this.moreFn(this.nowPage); 
+            },
+            goto: function(index) {
+                if (index == this.current) return;
+                this.current = index;
+                //这里可以发送ajax请求
+            },
+            getHotelImage(urls, key) {
+                // url => 为图片的集合   key => 为限定截取集合里面某个字段下面的图片
+                var urlsObj = urls;
+                var res = [];
+                if (!urls) return [];
+                if (typeof(urls) !== 'object') {
+                    urlsObj = JSON.parse(urlsObj);
+                }
+                if (key) {
+                    if (urlsObj[key] && urlsObj[key].length) {
+                        res = res.concat(getImageUrlList(urlsObj[key]));
+                    }
+                } else {
+                    Object.keys(urlsObj).forEach((val) => {
+                        res = res.concat(getImageUrlList(urlsObj[val]));
+                    });
+                }
+                return res;
+            },
+            getRequest(url, params) {
+                return new Promise((resolve, reject) => {
+                    Vue.http.get(
+                            url, {
+                                params: params
+                            }, {
+                                emulateJSON: true
+                            }
+                        )
+                        .then((res) => {
+                            resolve(res);
+                        })
+                        .catch((res) => {
+                            reject(res);
+                        });
+                });
+            },
+            postRequest(url, params) {
+                return new Promise((resolve, reject) => {
+                    console.log(JSON.stringify(params))
+                    let parm = JSON.stringify(params)
+                    Vue.http.post(
+                            url, {
+                                params
+                            }, {
+                                emulateJSON: false
+                            }
+                        )
+                        .then((res) => {
+                            resolve(res.body);
+                        })
+                        .catch((res) => {
+                            reject(res.body);
+                        });
+                });
+            }
+        },
+        directives: { // 自定义指令
+             
+            scroll: { 
+                bind: function(el, binding) {  
+                    window.addEventListener('scroll', function() {
+                        console.log(el.clientHeight)
+                        console.log(document.body.scrollTop + window.innerHeight)
+                        if (document.body.scrollTop + window.innerHeight >= el.clientHeight) {  
+                            var fnc = binding.value;
+                            fnc();  
+                        }  
+                    })
+                     } 
+            } 
+        },
+        mounted() {
+
+        }
+    })
+    vm.init();
+    </script>
+</body>
+<style>
+    .main-home .tab-con {
+  padding: 10px;
+}
+.main-home .tab-con ul li {
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  margin-bottom: 10px;
+}
+.main-home .tab-con ul li .co-logo {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  order: -1;
+  -webkit-order: -1;
+  flex: 0 0 50px;
+  -webkit-flex: 0 0 50px;
+  align-self: flex-start;
+  background: #e8e8e8;
+  position: relative;
+}
+.main-home .tab-con ul li .co-logo img {
+  width: 100%;
+}
+.main-home .tab-con ul li .co-logo em {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  top: 0;
+}
+.main-home .tab-con ul li .co-logo em:before {
+  content: "";
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  position: absolute;
+  top: 0;
+  z-index: 9;
+  border-style: solid;
+}
+.main-home .tab-con ul li .co-logo em:before {
+  border-width: 13px;
+  border-color: #ff3b3b transparent transparent #ff3b3b;
+}
+.main-home .tab-con ul li .co-logo span {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  top: 0;
+  width: 15px;
+  height: 15px;
+  line-height: 20px;
+  color: #fff;
+  text-align: center;
+}
+.main-home .tab-con ul li .co-info {
+  background: #ff4b4b;
+  flex: 1 1 auto;
+  -webkit-flex: 1 1 auto;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+.main-home .tab-con ul li .co-info .detail {
+  color: #fff;
+  padding: 0 0 0 5px;
+  width: 70%;
+}
+.main-home .tab-con ul li .co-info .detail p {
+  font-size: 14px;
+}
+.main-home .tab-con ul li .co-info .detail span {
+  font-size: 14px;
+}
+.main-home .tab-con ul li .co-info .btn-vote {
+  font-size: 14px;
+  background: #feb733;
+  border-radius: 5px;
+  text-align: center;
+  color: #fff;
+  height: 26px;
+  text-align: center;
+  margin: 10px 18px 0 0;
+  padding: 0 4px;
+}
+.main-home .tab-con ul li .co-info .disabled {
+  background: #ccc;
+}
+.main-home .tab-con ul li .co-info .status {
+  width: 17px;
+  height: 16px;
+  color: #fff;
+  display: block;
+  background: #feb934;
+  font-size: 14px;
+  position: absolute;
+  z-index: 3;
+  right: -5px;
+  top: -5px;
+  text-align: center;
+  line-height: 14px;
+}
+.main-home .tab-con ul li .co-info .status:before,
+.main-home .tab-con ul li .co-info .status:after {
+  content: "";
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  position: absolute;
+  top: 0;
+  z-index: 9;
+  border-style: solid;
+}
+.main-home .tab-con ul li .co-info .status:before {
+  left: -5px;
+  border-width: 0 0px 5px 5px;
+  border-color: transparent #e29a10 #e29a10 transparent;
+}
+.main-home .tab-con ul li .co-info .status:after {
+  top: 16px;
+  left: 12px;
+  border-width: 5px 5px 0px 0px;
+  border-color: #e29a10 transparent transparent #e29a10;
+}
+
+</style>
+</html>

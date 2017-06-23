@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>AZENUI</title>
+	<link rel="stylesheet" type="text/css" href="css/ui.css">
+	<link href="favicon.ico" type="image/x-icon" rel="icon">
+	<link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+</head>
+
+<body>
+	<div class="aui-container">
+		<div class="aui-page">
+			<div class="aui-t-header">
+				<div class="header">
+					<div class="header-background"></div>
+					<div class="toolbar statusbar-padding">
+						<button class="bar-button back-button"  onclick="history.go(-1);"><i class="icon icon-back"></i></button>
+						<div class="header-title">
+							<div class="title">轮播</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="aui-s-title b-line">
+				<div class="aui-s-content">
+					<h2>首页轮播</h2>
+					<p>应用于首页轮播广告以及橱窗</p>
+				</div>
+			</div>
+			<div class="devider b-line"></div>
+			<!-- 首页轮播 begin -->
+			<div class="aui-banner-content">
+				<div id="focus" class="focus">
+					<div class="bd">
+						<div class="tempWrap" style="overflow:hidden; position:relative;">
+							<ul id="Gallery" class="gallery" style="width: 2250px; position: relative; overflow: hidden; padding: 0px; margin: 0px; transition-duration: 200ms; transform: translate(-1125px, 0px) translateZ(0px);">
+								<li style="display: table-cell; vertical-align: top; width: 375px;" >
+									<a href="#"><img src="js/pd/img/banner1.jpg"></a>
+								</li>
+								<li style="display: table-cell; vertical-align: top; width: 375px;">
+									<a href="#"><img src="js/pd/img/banner2.jpg"></a>
+								</li>
+								<li style="display: table-cell; vertical-align: top; width: 375px;">
+									<a href="#"><img src="js/pd/img/banner3.jpg"></a>
+								</li>
+								<li style="display: table-cell; vertical-align: top; width: 375px;">
+									<a href="#"><img src="js/pd/img/banner4.jpg"></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="hd">
+						<ul>
+							<li class="">1</li>
+							<li class="">2</li>
+							<li class="">3</li>
+							<li class="">4</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- 首页轮播 end -->
+		</div>
+	</div>
+<script type="text/javascript" src="js/pd/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/pd/aui-touchSlide.js"></script>
+<script>
+	/*banner首页轮播*/
+	TouchSlide({
+		slideCell : "#focus",
+		titCell : ".hd ul", // 开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+		mainCell : ".bd ul",
+		effect : "leftLoop",
+		autoPlay : true, // 自动播放
+		autoPage : true, // 自动分页
+		delayTime: 200, // 毫秒；切换效果持续时间（执行一次效果用多少毫秒）
+		interTime: 5000, // 毫秒；自动运行间隔（隔多少毫秒后执行下一个效果）
+		switchLoad : "_src" // 切换加载，真实图片路径为"_src"
+	});
+</script>
+</body>
+</html>
