@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,width=device-width">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta content="telephone=no" name="format-detection">
+	<title>搜索条件</title>
+	<link rel="stylesheet" media="screen" href="http://assets.test.fanqiele.com/core/css/tomasky.core.all.css" />
+    <link type="text/css" rel="stylesheet" href="http://micro.fanqielaile.net/views/c/hawkeye/hawkeye.css">
+</head>
+<body>
+	<div class="s-list" id="sDom">
+		<ul>
+			<li><span>搜索地区</span><a href="javascript:;" @click="city">{{cityData}} (定位)</a></li>
+			<li><span>竟对酒店</span><a href="javascript:;" @click="sHotel">搜索酒店</a></li>
+		</ul>
+	</div>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/tomasky.core.all.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/fontSize.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/vue.js"></script>
+<script>
+    var urlParams = tmsky.util.urlParams()
+    var _data = JSON.parse(window.localStorage.getItem("city"))
+
+    new Vue({
+        el: '#sDom',
+        cityData: '',
+        created () {
+            this.cityData =_data?_data.ctiyName:''
+        },
+        methods: {
+            city () {
+                location.href = 'citylist.html'
+            },
+            sHotel () {
+                if(_data&&_data.cityId){
+                    location.href = 'hotel.html?cityCode='+_data.cityId
+                }else{
+                    tmsky.ui.dialog.warnTips('请先选择城市！')
+                }
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

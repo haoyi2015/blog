@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>业务经理</title>
+    <link rel="stylesheet" media="screen" href="http://assets.test.fanqiele.com/core/css/tomasky.core.all.css" />
+    <link type="text/css" rel="stylesheet" href="http://micro.fanqielaile.net/views/c/bdManager/manager.css">
+</head>
+<body  style="background-color: #f2f2f2;">
+<div class="manager ms-controller" ms-controller="vm_manager">
+    <div class="managerCon">
+        <div class="managerConTop">
+            <div class="fl">{{inn.innName}}</div>
+        </div>
+        <div class="managerInfo">
+            <div>
+                <ul>
+                    <li>业务经理</li>
+                    <li class="name">{{bdInfo.name||'番茄来了'}}</li>
+                </ul>
+            </div>
+            <div>
+                <span class="tel">{{bdInfo.mobile||'4000230190'}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="http://assets.test.fanqiele.com/core/js/tomasky.core.all.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/static/js/lib.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/bdManager/bdManager.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache;no-store">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" media="screen" href="http://assets.test.fanqiele.com/core/css/tomasky.core.all.css" />
+    <link type="text/css" rel="stylesheet" href="http://micro.fanqielaile.net/views/c/bind/bind.css">
+<title>番茄账号绑定</title>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f982003799c920ee8d4e14f679f3e82b";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+<div class="content ms-controller" ms-controller="bind">
+    <div class="bind" ms-visible="showOrhide.isShow">
+        <div class="logo"><img src="http://micro.fanqielaile.net/views/c/bind/images/logo.png"><span>番茄来了</span></div>
+        <div class="form">
+            <div class="notice">
+               绑定后，我们将在微信中为您推送该客栈的订单提醒，代销对账单，结算通知等消息！
+            </div>
+            <input type="text" class="username" placeholder="番茄账号/手机号码" ms-duplex="userInfo.username">
+            <input type="password" class="password" placeholder="密码" ms-duplex="userInfo.password">
+            <p class="bind-error"></p>
+            <button ms-click="bind">立即绑定</button>
+            <!-- <button class="continue-bind margin-10" ms-click="toRegister">立即注册</button> -->
+        </div>
+    </div>
+    <div class="bind-success" ms-visible="showOrhide.isHide">
+        <div class="bind-logo">
+            当前绑定
+        </div>
+        <div class="bind-ann-list">
+          <p ms-repeat-list="bindAnnList">{{list}}</p>
+        </div>
+        <div class="footer">
+            <div class="notice">我们将在微信中为您推送订单提醒，代销对账单，结算通知等消息！</div>
+            <button class="continue-bind danger-button" ms-click="continueBind">继续添加客栈>></button>
+            <!--<button class="continue-bind margin-10" ms-click="toAnnualReport">查看年报</button>-->
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="http://assets.test.fanqiele.com/core/js/tomasky.core.all.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/static/js/lib.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/bind/bind.js"></script>
+</body>
+</html>

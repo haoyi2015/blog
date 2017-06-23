@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,width=device-width">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta content="telephone=no" name="format-detection">
+	<title>竟对酒店列表</title>
+	<link rel="stylesheet" media="screen" href="http://assets.test.fanqiele.com/core/css/tomasky.core.all.css" />
+    <link type="text/css" rel="stylesheet" href="http://micro.fanqielaile.net/views/c/hawkeye/hawkeye.css">
+<link rel="stylesheet" href="http://micro.fanqielaile.net/views/c/hawkeye/font/font-icon.css">
+</head>
+<body class="body-load">
+	<section class="as-hotel" id="ashotel">
+        <section ref="loadbox" v-if="load">
+            <div class="haw-loading">
+            </div>
+        </section>
+        <div class="a-h-list" v-show="show" style="display:none">
+        	<!-- <div class="a-h-l">
+                <em class="icon-address">上海</em>   
+            </div>
+            <div class="a-h-r"> -->
+                <span>免费版</span><b @click="addHotel">添加竟对酒店</b><i>还可追踪2家  </i>
+            <!-- </div> -->
+        </div>
+        <div class="hotel-add-tips" v-show="tips" style="display: none"></div>
+        <div class="as-hotel-list" v-show="hotelList.length>=1" style="display: none">
+        	<ul>
+        		<li v-for="item in hotelList" @click="hotelDetail(item.hotelId)">
+        			<div class="a-l">
+        				<p v-if="item.status==1">
+                            <span class="icon-hawkeye dip"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span>
+                            <i>已绑定</i>            
+                        </p>
+        			</div>
+        			<div class="a-r">
+        				<p>{{item.hotelName}}</p>
+        				<div>{{item.hotelAddr}}</div>
+        			</div>
+        		</li>
+        	</ul>
+        </div>
+        <div class="cpt_mask_dailog" ref="show" v-show="asShow" style="display: none">
+            <div class="div_dailog c-confirm">
+                <div class="title_dailog">您当前为免费版鹰眼</div>
+                <div class="discription_dailog">
+                    <p class="p-count">免费版只可追踪两家竟对酒店！<br>如需添加更多，请联系业务经理！</p>
+                </div>
+                <div class="dailog_divOperation" style="margin-top: .7rem;">
+                    <span class="btn_save" data-name="绑定" @click="save" style="width: 100%">确定</span>
+                </div>
+            </div>
+        </div>
+    </section>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/fontSize.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/vue.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/axios.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/tomasky.core.all.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/hawkeye/js/ashotel.js"></script>
+</body>
+</html>

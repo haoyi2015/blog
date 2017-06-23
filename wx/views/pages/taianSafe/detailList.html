@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>客栈酒店财产及责任保险</title>
+    <link type="text/css" rel="stylesheet" href="http://micro.fanqielaile.net/static/js/library/jquery-weui/weui.css">
+<link type="text/css" rel="stylesheet" href="http://micro.fanqielaile.net/static/js/library/jquery-weui/jquery-weui.css">
+<link type="text/css" rel="stylesheet" href="http://micro.fanqielaile.net/views/c/taianSafe/taianSafe.css">
+</head>
+<body style="background-color: #f2f2f2;">
+<div class="detailListTop">
+    <div class="weui_title">
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>投保人信息</p>
+            </div>
+        </div>
+    </div>
+    <div class="weui_cell">
+        <div class="weui_cell_hd"><label class="weui_label">投保人姓名</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input info_name" type="text" placeholder="请输入姓名">
+        </div>
+    </div>
+    <div class="weui_cells weui_cells_access" id="cardType">
+        <a class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>证件类型</p>
+            </div>
+            <div class="weui_cell_ft info_card"></div>
+        </a>
+    </div>
+    <div class="weui_cell">
+        <div class="weui_cell_hd"><label class="weui_label">证件号码</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input info_cardNo" type="text" placeholder="请输入证件号码">
+        </div>
+    </div>
+    <div class="weui_cells weui_cells_access date">
+        <a class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>出生日期</p>
+            </div>
+            <div class="weui_cell_ft"><input class="date_input info_date" placeholder=""></div>
+        </a>
+    </div>
+    <div class="weui_cell">
+        <div class="weui_cell_hd"><label class="weui_label">手机号码</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input info_tel" type="text" placeholder="请输入手机号码">
+        </div>
+    </div>
+    <!--<div class="weui_cell">-->
+        <!--<div class="weui_cell_hd"><label class="weui_label">邮箱地址</label></div>-->
+        <!--<div class="weui_cell_bd weui_cell_primary">-->
+            <!--<input class="weui_input info_mail" type="text" placeholder="请输入邮箱地址">-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="weui_cells weui_cells_access" id="sex">
+        <a class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>性别</p>
+            </div>
+            <div class="weui_cell_ft info_sex"></div>
+        </a>
+    </div>
+    <div class="weui_cells weui_cells_access" id="idType">
+        <a class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>投保人身份类型</p>
+            </div>
+            <div class="weui_cell_ft"></div>
+        </a>
+    </div>
+</div>
+
+<div class="detailListTop">
+    <div class="weui_title">
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>标的信息</p>
+            </div>
+        </div>
+    </div>
+    <div class="weui_cell">
+        <div class="weui_cell_hd"><label class="weui_label">财产地址</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <div class="weui_cell_ft" id="info_county"></div>
+        </div>
+    </div>
+    <div class="weui-row weui-no-gutter">
+        <div class="weui_cells weui-col-33 weui_cells_access" id="city">
+            <a class="weui_cell" href="javascript:;">
+                <div class="weui_cell_bd weui_cell_primary info_city">
+                    <p>城市</p>
+                </div>
+                <div class="weui_cell_ft"></div>
+            </a>
+        </div>
+        <div class="weui-col-66 weui_cells">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input info_adress" type="text" placeholder="街道">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="weui_cell">
+        <div class="weui_cell_hd"><label class="weui_label">客房数量</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <div class="weui_cell_ft safeDetailRoomNo"></div>
+        </div>
+    </div>
+    <div class="weui_cell">
+        <div class="weui_cell_hd"><label class="weui_label">房屋性质</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <div class="weui_cell_ft">住宿类</div>
+        </div>
+    </div>
+    <div class="weui_cell">
+        <div class="weui_cell_hd"><label class="weui_label">经营范围</label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <div class="weui_cell_ft">住宿类酒店或客栈的整体经营范围</div>
+        </div>
+    </div>
+    <div class="weui_cells weui_cells_access" id="info_type">
+        <a class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>房屋结构</p>
+            </div>
+            <div class="weui_cell_ft info_type"></div>
+        </a>
+    </div>
+</div>
+<div class="weui_cell checkAgress">
+    <!--<a class="tbxz">《投保须知》</a>和-->
+    <span><i class="weui_icon_circle weui_icon_blue"></i>我已阅读并同意<a href="infoList.html">《投保条款》</a></span>
+</div>
+<div class="sureTb">
+    <span class="fl">￥<label class="detailPayFee">0</label>.00</span>
+    <div class="weui_cell_primary">
+        <a class="fr surePay">确认投保</a>
+    </div>
+</div>
+
+<form action="http://shop.ehuatai.com:7006/eservice/ebiz/client/dajiabao.action?action=requestPayment" method="post" id="payForm">
+    <input type="hidden" name="pageCallbackAddress" value=""/>
+    <input type="hidden" name="callbackAddress" value=""/>
+    <input type="hidden" name="orderId" value=""/>
+    <input type="hidden" name="channelID" value=""/>
+    <input type="hidden" name="thirdType" value=""/>
+    <input type="hidden" name="tradeName" value=""/>
+    <input type="hidden" name="tradeType" value=""/>
+    <input type="hidden" name="tradeTime" value=""/>
+    <input type="hidden" name="currencyType" value=""/>
+    <input type="hidden" name="customerMobile" value=""/>
+    <input type="hidden" name="money" value=""/>
+    <input type="hidden" name="businessSystem" value=""/>
+    <input type="hidden" name="businessDocumentCode" value=""/>
+    <input type="hidden" name="callbackType" value=""/>
+    <input type="hidden" name="paymentType" value=""/>
+    <input type="hidden" name="remark" value=""/>
+    <input type="hidden" name="digitalSignature" value=""/>
+</form>
+
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/static/js/library/jquery-weui/jquery-2.1.4.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/taianSafe/util/date.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/static/js/library/jquery-weui/jquery-weui.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/static/js/lib.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/taianSafe/util/event.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://micro.fanqielaile.net/views/c/taianSafe/taianSafe.js"></script>
+</body>
+</html>
